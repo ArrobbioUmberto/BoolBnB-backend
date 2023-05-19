@@ -71,7 +71,9 @@ class ApartmentSeeder extends Seeder
             "Bungalow Romantico Immerso nel Verde"
         ];
 
+
         $service_ids = Service::all()->pluck("id")->all();
+
 
         for ($i = 0; $i < 100; $i++) {
             $num_bath = $faker->numberBetween(1, 6);
