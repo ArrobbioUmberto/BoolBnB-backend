@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Apartment;
 use App\Models\Image;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,6 +17,7 @@ class ImageSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+        $apartment_id = Apartment::all()->pluck('id')->all();
         $photos = [
             "Camera da letto principale",
             "Soggiorno spazioso",
@@ -38,10 +40,11 @@ class ImageSeeder extends Seeder
             "Spaziosa sala giochi per bambini",
             "Stanza degli ospiti con bagno privato"
         ];
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $new_image = new Image();
             $new_image->name = $faker->randomElement($photos);
             $new_image->url = $faker->imageUrl();
+            $new_image->apartment_id = $faker->randomElement($apartment_id, rand(1, 4));
             $new_image->save();
         }
     }
