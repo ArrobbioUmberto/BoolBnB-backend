@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -22,7 +23,7 @@ class UserSeeder extends Seeder
             $new_user->last_name = $faker->lastName();
             $new_user->date_birth = $faker->dateTime();
             $new_user->email = strtolower($new_user->first_name . str_replace(" ", '', $new_user->last_name) . $faker->unique()->numberBetween(0, 100)) . '@gmail.com';
-            $new_user->password = $faker->password();
+            $new_user->password = Hash::make($faker->password());
             $new_user->save();
         }
     }
