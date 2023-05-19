@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Service;
 use App\Models\Apartment;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -69,6 +70,9 @@ class ApartmentSeeder extends Seeder
             "Appartamento Raffinato con Vista sul Fiume",
             "Bungalow Romantico Immerso nel Verde"
         ];
+
+        $service_ids = Service::all()->pluck("id")->all();
+
         for ($i = 0; $i < 100; $i++) {
             $num_bath = $faker->numberBetween(1, 6);
             $num_rooms = $num_bath * 3;
@@ -95,6 +99,8 @@ class ApartmentSeeder extends Seeder
             $new_apartment->slug = Str::slug($new_apartment->title, "-");
 
             $new_apartment->save();
+
+            $new_apartment->services()->attach($faker->randomElements($service_ids, rand(7, 35)));
         }
     }
 }
