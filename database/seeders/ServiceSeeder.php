@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Apartment;
 use App\Models\Service;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -57,6 +58,7 @@ class ServiceSeeder extends Seeder
             $new_service = new Service();
             $new_service->name = $service;
             $new_service->save();
+
         }
     }
 }

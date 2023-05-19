@@ -9,6 +9,12 @@ class Apartment extends Model
 {
     use HasFactory;
 
+
+    public function services()
+    {
+        return $this->belongsToMany(Service::class);
+    }
+
     public function sponsorships()
     {
         return $this->belongsToMany(Sponsorship::class);
