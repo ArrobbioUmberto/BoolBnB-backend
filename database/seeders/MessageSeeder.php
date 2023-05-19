@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Apartment;
 use App\Models\Message;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -41,14 +42,17 @@ class MessageSeeder extends Seeder
             "Ciao, vorrei prenotare un appartamento per 5 notti nel vostro complesso. Potete indicarmi se avete disponibilità nel periodo 05/06 - 15/06?"
         ];
 
+        $app_ids = Apartment::all()->pluck('id')->all();
+
 
         for ($i = 0; $i < 50; $i++) {
 
             $new_message = new Message();
 
             $new_message->name = $faker->firstName();
-            $new_message->email = $faker->email();
+            $new_message->email =  strtolower($new_message->name . $faker->unique()->numberBetween(0, 100)) . '@gmail.com';
             $new_message->text = $faker->randomElement($messages);
+            $new_message->apartment_id = $faker->randomElement($app_ids, rand(1, 5));
 
             $new_message->save();
         }
