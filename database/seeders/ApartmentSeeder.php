@@ -69,6 +69,7 @@ class ApartmentSeeder extends Seeder
             "Appartamento Raffinato con Vista sul Fiume",
             "Bungalow Romantico Immerso nel Verde"
         ];
+
         for ($i = 0; $i < 100; $i++) {
             $num_bath = $faker->numberBetween(1, 6);
             $num_rooms = $num_bath * 3;
