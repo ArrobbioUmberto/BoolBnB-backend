@@ -34,4 +34,8 @@ class Apartment extends Model
     {
         return $this->hasMany(Message::class);
     }
+    public function getServiceIds()
+    {
+        return $this->services->pluck('id')->all();
+    }
 }
