@@ -6,6 +6,7 @@ use App\Models\Apartment;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 
+
 class ApartmentController extends Controller
 {
     /**
@@ -15,7 +16,9 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        //
+        $apartments = Apartment::all();
+
+        return view('apartments.index', compact('apartments'));
     }
 
     /**
