@@ -97,7 +97,35 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        //
+        //$this->authorize('update', $apartment);
+
+        $data = $request->validated();
+
+        //modifica dello slug se cambia il titolo
+        if ($data['title'] !== $apartment['title']) {
+            $data['slug'] = Str::slug($data['title']);
+        }
+
+        //salvataggio e modifica immagine di copertina
+        if ($request->hasFile('image')) {
+            $cover_path = Storage::put('uploads', $data['cover_image']);
+            $data['cover_image'] = $cover_path;
+
+            if ($apartment->cover_image && Storage::exists($apartment->cover_image)) {
+                Storage::delete($apartment->cover_image);
+            }
+        }
+
+        $apartment->update($data);
+
+        //aggiornamento dei servizi
+        if (isset($data['service'])) {
+            $apartment->services()->sync($data['services']);
+        } else {
+            $apartment->services()->sync([]);
+        }
+
+        return to_route('apartments.show', $apartment);
     }
 
     /**
