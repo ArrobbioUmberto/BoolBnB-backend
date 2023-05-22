@@ -28,7 +28,7 @@
 
             <tbody>
 
-                @foreach ($apartments as $apartment)
+                @forelse ($apartments as $apartment)
 
                     <tr>
                         <td>{{ $apartment->title }}</td>
@@ -54,8 +54,11 @@
                             </form>
                         </td>
                     </tr>
-
-                @endforeach
+                @empty
+                    <h2>
+                        Nessun appartamento
+                    </h2>
+                @endforelse
 
             </tbody>
         </table>
