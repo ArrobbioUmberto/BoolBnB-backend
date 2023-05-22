@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+
 class ApartmentController extends Controller
 {
     /**
@@ -20,7 +21,9 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        //
+        $apartments = Apartment::all();
+
+        return view('apartments.index', compact('apartments'));
     }
 
     /**
