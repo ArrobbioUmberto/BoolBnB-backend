@@ -84,6 +84,8 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+
+        return to_route('apartments.index');
     }
 }
