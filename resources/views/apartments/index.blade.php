@@ -7,6 +7,9 @@
     </div>
 
     <div class="container py-5">
+
+        <a class="btn btn-sm btn-primary ms-auto" href="{{ route('apartments.create') }}">Aggiungi appartamento</a>
+
         <table class="table table-striped table-inverse table-responsive">
             <thead>
                 <tr>
@@ -19,6 +22,7 @@
                     <th>N. letti</th>
                     <th>N. bagni</th>
                     <th>Visibilità</th>
+                    <th>funzionalità</th>
                 </tr>
             </thead>
 
@@ -36,6 +40,19 @@
                         <td>{{ $apartment->beds }}</td>
                         <td>{{ $apartment->bathrooms }}</td>
                         <td>{{ $apartment->visibility == 1 ? "pubblico" : "privato" }}</td>
+                        <td class="d-flex gap-2">
+                            <a class="btn btn-primary btn-sm" href="{{ route('apartments.edit', $apartment) }}">
+                              Modifica
+                            </a>
+
+                            <form method="POST" action="{{ route('apartments.destroy', $apartment->id) }}">
+                                @csrf
+    
+                                @method('DELETE')
+    
+                                <input class="btn btn-danger btn-sm" type="submit" value="elimina">
+                            </form>
+                        </td>
                     </tr>
 
                 @endforeach
