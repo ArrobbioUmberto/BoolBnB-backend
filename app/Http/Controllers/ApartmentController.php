@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Apartment;
+use App\Models\Service;
+use App\Models\Image;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +30,8 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        //
+        $services = Service::all();
+        return view('apartments.create', compact('services'));
     }
 
     /**
@@ -105,6 +108,8 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+
+        return to_route('apartments.index');
     }
 }
