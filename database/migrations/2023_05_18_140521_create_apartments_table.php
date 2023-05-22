@@ -22,8 +22,8 @@ return new class extends Migration
             $table->smallInteger("sqm");
             $table->string("address");
             $table->string("city");
-            $table->float("lat", 8, 5);
-            $table->float("lng", 8, 5);
+            $table->float("lat", 8, 5)->nullable();
+            $table->float("lng", 8, 5)->nullable();
             $table->tinyInteger("visibility")->default(1);
             $table->decimal("price", 6, 2);
             $table->text("description");
