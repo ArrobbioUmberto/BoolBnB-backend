@@ -1,3 +1,5 @@
+@extends('layouts.app')
+
 <div class="container">
     <form action="{{ route('apartments.store') }}" method="post">
         @csrf
@@ -14,17 +16,17 @@
         
         <div class="mb-3">
             <label class="form-label" for="rooms">Numero di stanze</label>
-            <input class="form-control" type="text" id="rooms" name="rooms" value="{{ old('rooms') }}">
+            <input class="form-control" type="number" id="rooms" name="rooms" value="{{ old('rooms') }}">
         </div>
 
         <div class="mb-3">
             <label class="form-label" for="beds">Numero di posti letto</label>
-            <input class="form-control" type="text" id="beds" name="beds" value="{{ old('beds') }}">
+            <input class="form-control" type="number" id="beds" name="beds" value="{{ old('beds') }}">
         </div>
 
         <div class="mb-3">
             <label class="form-label" for="bathrooms">Numero di bagni</label>
-            <input class="form-control" type="text" id="bathrooms" name="bathrooms" value="{{ old('bathrooms') }}">
+            <input class="form-control" type="number" id="bathrooms" name="bathrooms" value="{{ old('bathrooms') }}">
         </div>
 
         <div class="mb-3">
@@ -43,18 +45,8 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label" for="lat">Latitudine</label>
-            <input class="form-control" type="text" id="lat" name="lat" value="{{ old('lat') }}">
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label" for="lng">Longitudine</label>
-            <input class="form-control" type="text" id="lng" name="lng" value="{{ old('lng') }}">
-        </div>
-
-        <div class="mb-3">
             <label class="form-label" for="visibility">Visibile</label>
-            <input class="form-control" type="text" id="visibility" name="visibility" value="{{ old('visibility') }}">
+            <input class="form-check-input" type="checkbox" id="visibility" name="visibility" value="{{ old('visibility') }}">
         </div>
 
         <div class="mb-3">
@@ -64,7 +56,19 @@
 
         <div class="mb-3">
             <label class="form-label" for="cover-image">Immagine di copertina</label>
-            <input class="form-control" type="text" id="cover-image" name="cover-image" value="{{ old('cover-image') }}">
+            <input class="form-control" type="file" id="cover-image" name="cover-image" value="{{ old('cover-image') }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="services">Servizi</label>
+
+            @foreach ($services as $service)
+            <div class="form-check">
+                <input type="checkbox" name="services[]" class="form-check-input " value="{{ $service->id }}"
+                    id="service">
+                <label for="service" class="form-check-label">{{ $service->name }}</label>
+            </div>
+        @endforeach
         </div>
 
         <button type="submit" class="btn btn-success">
