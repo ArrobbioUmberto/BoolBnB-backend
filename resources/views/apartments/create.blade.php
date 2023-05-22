@@ -49,7 +49,11 @@
             
             <div class="mb-3">
                 <label class="form-label" for="visibility">Visibile</label>
-                <input class="form-check-input" type="checkbox" id="visibility" name="visibility" value="{{ old('visibility') }}">
+                <select class="form-select" id="visibility" name="visibility" value="{{ old('visibility') }}">
+                    <option value="" selected>Vuoi rendere visibile il tuo appartamento?</option>
+                    <option value="1">Sì</option>
+                    <option value="0">No</option>
+                </select>
             </div>
             
             <div class="mb-3">

@@ -38,4 +38,19 @@ class Apartment extends Model
     {
         return $this->services->pluck('id')->all();
     }
+
+    protected $fillable = [
+        'title',
+        'rooms',
+        'beds',
+        'bathrooms',
+        'sqm',
+        'address',
+        'city',
+        'visibility',
+        'price',
+        'description',
+        'cover_image',
+        'slug',
+    ];
 }
