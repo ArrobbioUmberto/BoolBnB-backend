@@ -4,7 +4,7 @@
     
 
     <div class="container">
-        <form action="{{ route('apartments.store') }}" method="post">
+        <form action="{{ route('apartments.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
             <div class="mb-3">

@@ -52,5 +52,6 @@ class Apartment extends Model
         'description',
         'cover_image',
         'slug',
+        'user_id',
     ];
 }

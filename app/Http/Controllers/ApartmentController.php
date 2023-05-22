@@ -51,11 +51,11 @@ class ApartmentController extends Controller
         $data['slug'] = Str::slug($data['title']);
 
         //autenticazione
-        //$data['user_id'] = Auth::id();
+        $data['user_id'] = Auth::id();
 
         //salvo le immagini
         if ($request->hasFile('cover-image')) {
-            $cover_path = Storage::put('uploads', $data['cover_image']);
+            $cover_path = Storage::put('uploads', $data['cover-image']);
             $data['cover_image'] = $cover_path;
         }
 
