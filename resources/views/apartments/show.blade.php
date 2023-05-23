@@ -30,6 +30,7 @@
     <li> Numero Stanze: {{ $apartment->rooms}}</li>
     <li> Posti Letto: {{ $apartment->beds}}</li>
     <li> Bagni: {{ $apartment->bathrooms}}</li>
+    <li> Metri quadri: {{ $apartment->sqm}} &#13217;</li>
     <li> Servizi:
       <ul class="d-flex flex-wrap gap-2">
         @forelse($apartment->services()->orderBy('name')->get() as $service)
@@ -39,7 +40,7 @@
         @endforelse
       </ul>
     </li>
-    <li> Prezzo a notte: {{$apartment->price}} </li>
+    <li> Prezzo a notte: {{$apartment->price}}&euro;</li>
     <li> Proprietario: {{$apartment->user->first_name}} {{$apartment->user->last_name}}</li>
   </ul>
 
