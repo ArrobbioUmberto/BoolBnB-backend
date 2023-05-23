@@ -33,7 +33,7 @@ class StoreApartmentRequest extends FormRequest
             'city'=> "required|string|min:2|max:100",
             'visibility'=> "required|boolean",
             'price'=> "required|decimal:2|min:20|max:9999",
-            'description'=> "required|string|min:8|max_digits:2000",
+            'description'=> "required|string|min:8|max:2000",
             'cover_image'=> "required|image|max:3072",
         ];
     }
