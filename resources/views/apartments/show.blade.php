@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Controllo per la Visibilita' dell'Appartamento -->
-@if($apartment->visibility === 1)
 
 <div class="container py-2 d-flex justify-content-end gap-2">
   <a href="{{ route('apartments.edit', $apartment) }}" class="btn btn-warning">Modifica</a>
@@ -19,7 +17,7 @@
 <div class="container text-center py-4">
   <h1 class="mb-4">{{ $apartment->title }}</h1>
 
-  <span> {{ $apartment->cover_image }} </span>
+  <img src="{{ $apartment->cover_image }}" alt="immagine di copertina dell'appartamento">
 
   <p class="mt-4">{{ $apartment->description }}</p>
 </div>
@@ -27,6 +25,7 @@
 <div class="container">
 
   <ul>
+    <li> Visibilità: <span class="badge rounded-pill {{ $apartment->visibility === 1 ? "bg-success" : "bg-danger" }}">{{ $apartment->visibility === 1 ? "Pubblico" : "Privato" }}</span> </li>
     <li> Indirizzo: {{ $apartment->address}} - {{ $apartment->city}} </li>
     <li> Numero Stanze: {{ $apartment->rooms}}</li>
     <li> Posti Letto: {{ $apartment->beds}}</li>
@@ -46,9 +45,5 @@
 
 </div>
 
-
-@else
-Appartamento Non Visibile
-@endif
 
 @endsection
