@@ -45,7 +45,7 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         //genero slug
         $data['slug'] = Str::slug($data['title']);
@@ -104,7 +104,7 @@ class ApartmentController extends Controller
     {
         //$this->authorize('update', $apartment);
 
-        $data = $request->all();
+        $data = $request->validated();
 
         //modifica dello slug se cambia il titolo
         if ($data['title'] !== $apartment['title']) {

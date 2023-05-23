@@ -6,48 +6,48 @@
             @csrf
 
             <div class="mb-3">
-                <label class="form-label" for="title">Titolo annuncio</label>
+                <label class="form-label" for="title">Titolo annuncio <span class="text-danger">*</span></label>
                 <input class="form-control" type="text" id="title" name="title" value="{{ old('title') }}">
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="description">Descrizione</label>
+                <label class="form-label" for="description">Descrizione <span class="text-danger">*</span></label>
                 <input class="form-control" type="text" id="description" name="description"
                     value="{{ old('description') }}">
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="rooms">Numero di stanze</label>
+                <label class="form-label" for="rooms">Numero di stanze <span class="text-danger">*</span></label>
                 <input class="form-control" type="number" id="rooms" name="rooms" value="{{ old('rooms') }}">
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="beds">Numero di posti letto</label>
+                <label class="form-label" for="beds">Numero di posti letto <span class="text-danger">*</span></label>
                 <input class="form-control" type="number" id="beds" name="beds" value="{{ old('beds') }}">
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="bathrooms">Numero di bagni</label>
+                <label class="form-label" for="bathrooms">Numero di bagni <span class="text-danger">*</span></label>
                 <input class="form-control" type="number" id="bathrooms" name="bathrooms" value="{{ old('bathrooms') }}">
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="sqm">Metri quadri</label>
+                <label class="form-label" for="sqm">Metri quadri <span class="text-danger">*</span></label>
                 <input class="form-control" type="text" id="sqm" name="sqm" value="{{ old('sqm') }}">
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="address">Indirizzo</label>
+                <label class="form-label" for="address">Indirizzo <span class="text-danger">*</span></label>
                 <input class="form-control" type="text" id="address" name="address" value="{{ old('address') }}">
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="city">Città</label>
+                <label class="form-label" for="city">Città <span class="text-danger">*</span></label>
                 <input class="form-control" type="text" id="city" name="city" value="{{ old('city') }}">
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="visibility">Visibilità</label>
+                <label class="form-label" for="visibility">Visibilità <span class="text-danger">*</span></label>
                 <select class="form-select" id="visibility" name="visibility" value="{{ old('visibility') }}">
                     <option value="" selected>Scegli la visibilità del tuo appartamento?</option>
                     <option value="1">Pubblico</option>
@@ -56,18 +56,18 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="price">Prezzo</label>
+                <label class="form-label" for="price">Prezzo <span class="text-danger">*</span></label>
                 <input class="form-control" type="text" id="price" name="price" value="{{ old('price') }}">
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="cover-image">Immagine di copertina</label>
+                <label class="form-label" for="cover-image">Immagine di copertina <span class="text-danger">*</span></label>
                 <input class="form-control" type="file" id="cover-image" name="cover-image"
                     value="{{ old('cover-image') }}">
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="services">Servizi</label>
+                <label class="form-label" for="services">Servizi <span class="text-danger">*</span></label>
 
                 @foreach ($services as $service)
                     <div class="form-check">

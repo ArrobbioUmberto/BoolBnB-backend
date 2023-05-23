@@ -15,7 +15,7 @@
                     <th>Titolo</th>
                     <th>Città</th>
                     <th>Indirizzo</th>
-                    <th>Prezzo</th>
+                    <th>Prezzo a notte</th>
                     <th>Metri quadrati</th>
                     <th>N. stanze</th>
                     <th>N. letti</th>
