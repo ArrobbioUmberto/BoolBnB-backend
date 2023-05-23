@@ -54,8 +54,8 @@ class ApartmentController extends Controller
         $data['user_id'] = Auth::id();
 
         //salvo le immagini
-        if ($request->hasFile('cover-image')) {
-            $cover_path = Storage::put('uploads', $data['cover-image']);
+        if ($request->hasFile('cover_image')) {
+            $cover_path = Storage::put('uploads', $data['cover_image']);
             $data['cover_image'] = $cover_path;
         }
 
