@@ -124,7 +124,7 @@ class ApartmentController extends Controller
         $apartment->update($data);
 
         //aggiornamento dei servizi
-        if (isset($data['service'])) {
+        if (isset($data['services'])) {
             $apartment->services()->sync($data['services']);
         } else {
             $apartment->services()->sync([]);

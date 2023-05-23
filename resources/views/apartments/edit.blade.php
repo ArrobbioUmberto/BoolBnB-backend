@@ -129,8 +129,8 @@
             <select class="form-select @error('visibility') is-invalid @enderror" aria-label="Default select example"
                 id="visibility" name="visibility" value="{{ old('visibility', $apartment->visibility) }}">
                 <option selected>Vuoi rendere visibile il tuo appartamento ?</option>
-                <option @selected(old('visibility', $apartment->visibility) == 1)value="1">SI</option>
-                <option @selected(old('visibility', $apartment->visibility) == 0)value="0">NO</option>
+                <option @selected(old('visibility', $apartment->visibility) == 1) value="1">Pubblico</option>
+                <option @selected(old('visibility', $apartment->visibility) == 0) value="0">Privato</option>
 
             </select>
             @error('visibility')
