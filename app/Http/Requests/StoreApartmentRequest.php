@@ -35,7 +35,9 @@ class StoreApartmentRequest extends FormRequest
             'price' => "required|numeric|min:20|max:9999",
             'description' => "required|string|min:8|max:2000",
             'cover_image' => "required|image|max:3072",
-            'services' => "exists:services,id"
+            'services' => "exists:services,id",
+            'lat' => "required",
+            'lng' => "required"
         ];
     }
 }

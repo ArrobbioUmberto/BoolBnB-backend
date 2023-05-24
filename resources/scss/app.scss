@@ -1,2 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
-@import "node_modules/font-awesome/scss/font-awesome.scss"
+@import "node_modules/font-awesome/scss/font-awesome.scss";
+
+.tt-search-box-input-container {
+    border-radius: 5px;
+}
