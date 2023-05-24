@@ -34,6 +34,7 @@ class ApartmentController extends Controller
     public function create()
     {
         $services = Service::all();
+
         return view('apartments.create', compact('services'));
     }
 
@@ -46,6 +47,7 @@ class ApartmentController extends Controller
     public function store(StoreApartmentRequest $request)
     {
         $data = $request->validated();
+
 
         //genero slug
         $data['slug'] = Str::slug($data['title']);

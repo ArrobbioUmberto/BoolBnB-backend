@@ -71,24 +71,16 @@
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Indirizzo</label>
-                <input type="text" name="address" class="form-control @error('address') is-invalid @enderror"
+                <p id="address">{{ $apartment->address . ',' . $apartment->city }}</p>
+                {{-- <input type="text" name="address" class="form-control @error('address') is-invalid @enderror"
                     value="{{ old('address', $apartment->address) }}" id="address" aria-describedby="address">
                 @error('address')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
-                @enderror
+                @enderror --}}
             </div>
-            <div class=" mb-3">
-                <label for="city" class="form-label">Città</label>
-                <input type="text" name="city" class="form-control @error('city') is-invalid @enderror"
-                    value="{{ old('city', $apartment->city) }}" id="city" aria-describedby="city">
-                @error('city')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
+
             <div class="mb-3">
                 <label for="price" class="form-label">Prezzo</label>
                 <div class="input-group ">
@@ -107,9 +99,9 @@
             <div class="mb-3">
                 <label for="description" class="form-label">Descrizione</label>
                 <textarea name="description" class="form-control @error('description') is-invalid @enderror" value=""
-                    id="description" aria-label="With textarea" cols="30" rows="10">
-                    {{ old('description', $apartment->description) }}
-                </textarea>
+                    id="description" aria-label="With textarea" cols="30" rows="10">  {{ old('description', $apartment->description) }}</textarea>
+
+
                 @error('description')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -127,8 +119,8 @@
                 @endforeach
             </div>
             <div class="mb-3">
-               <label for="visibility" class="form-label">Visibilità</label>
-               <select class="form-select @error('visibility') is-invalid @enderror" aria-label="Default select example"
+                <label for="visibility" class="form-label">Visibilità</label>
+                <select class="form-select @error('visibility') is-invalid @enderror" aria-label="Default select example"
                     id="visibility" name="visibility" value="{{ old('visibility', $apartment->visibility) }}">
                     <option selected>Vuoi rendere visibile il tuo appartamento ?</option>
                     <option @selected(old('visibility', $apartment->visibility) == 1) value="1">Pubblico</option>
@@ -146,5 +138,4 @@
             </div>
         </form>
     </div>
-
 @endsection
