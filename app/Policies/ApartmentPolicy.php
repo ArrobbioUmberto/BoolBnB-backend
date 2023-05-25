@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Apartment;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class ApartmentPolicy
 {
@@ -30,7 +31,9 @@ class ApartmentPolicy
      */
     public function view(User $user, Apartment $apartment)
     {
-        //
+        return $user->id === $apartment->user_id
+            ? Response::allow()
+            : Response::deny('NO POLICY');
     }
 
     /**
@@ -53,7 +56,9 @@ class ApartmentPolicy
      */
     public function update(User $user, Apartment $apartment)
     {
-        //
+        return $user->id === $apartment->user_id
+            ? Response::allow()
+            : Response::deny('NO POLICY');
     }
 
     /**
