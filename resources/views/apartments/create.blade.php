@@ -82,8 +82,9 @@
                 <select class="form-select  @error('visibility') is-invalid @enderror" id="visibility" name="visibility"
                     value="{{ old('visibility') }}">
                     <option value="" selected>Scegli la visibilità del tuo appartamento?</option>
-                    <option value="1">Pubblico</option>
-                    <option value="0">Privato</option>
+                    <option value="1" @selected(old('visibility'))>Pubblico</option>
+                    <option value="0" @selected(old('visibility'))>Privato</option>
+
                 </select>
                 @error('visibility')
                     <div class="invalid-feedback">
@@ -115,7 +116,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="services">Servizi <span class="text-danger">*</span></label>
+                <label class="form-label" for="services">Servizi </label>
 
                 @foreach ($services as $service)
                     <div class="form-check">
