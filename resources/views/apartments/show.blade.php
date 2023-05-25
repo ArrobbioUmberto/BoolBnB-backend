@@ -46,6 +46,7 @@
             </li>
             <li> Prezzo a notte: {{ $apartment->price }}&euro;</li>
             <li> Proprietario: {{ $apartment->user->first_name }} {{ $apartment->user->last_name }}</li>
+            <li> <a href="{{ route('check') }}">Acquista sponsor</a> </li>
         </ul>
 
     </div>

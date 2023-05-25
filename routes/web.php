@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ApartmentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SponsorshipController;
+use App\Http\Controllers\PaymentsController;
+use App\Models\Sponsorship;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +32,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'apartment:slug']);
+
+    Route::get('/payment/make', [PaymentsController::class, 'make'])->name('payment.make');
+    Route::get('/payment', function () {
+        return view('payment.payment');
+    })->name('check');
 });
+
 
 require __DIR__ . '/auth.php';

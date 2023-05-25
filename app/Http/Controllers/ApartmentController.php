@@ -52,7 +52,8 @@ class ApartmentController extends Controller
 
 
         //genero slug
-        $data['slug'] = Str::slug($data['title']);
+        $uniqueId = Str::random(8);
+        $data['slug'] = Str::slug($data['title']) . '-' . $uniqueId;
 
         //autenticazione
         $data['user_id'] = Auth::id();
@@ -73,7 +74,16 @@ class ApartmentController extends Controller
         if (isset($data['services'])) {
             $apartment->services()->attach($data['services']);
         }
+        // if($request->hasFile("images")){
+        //     $files=$request->file("images");
+        //     foreach($files as $file){
 
+        //         $request['apartment_id']=$apartment->id;
+        //         $file->move(\public_path("/images"),$imageName);
+        //         Image::create($request->all());
+
+        //     }
+        // }
 
         return to_route('apartments.show', $apartment);
     }
