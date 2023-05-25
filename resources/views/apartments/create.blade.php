@@ -114,6 +114,16 @@
                     </div>
                 @enderror
             </div>
+            <div class="mb-3">
+                <label class="form-label" for="images">Altre immagini</label>
+                <input class="form-control  @error('images') is-invalid @enderror" type="file" id="images" multiple
+                    name="images[]">
+                @error('images')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
 
             <div class="mb-3">
                 <label class="form-label" for="services">Servizi </label>

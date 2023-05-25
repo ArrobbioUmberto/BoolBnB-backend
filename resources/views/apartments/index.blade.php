@@ -5,6 +5,7 @@
         <h1>Elenco degli appartamenti</h1>
     </div>
 
+
     <div class="container py-5">
 
         <a class="btn btn-sm btn-primary ms-auto" href="{{ route('apartments.create') }}">Aggiungi appartamento</a>

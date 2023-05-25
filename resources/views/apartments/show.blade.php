@@ -16,7 +16,10 @@
     <div class="container text-center py-4">
         <h1 class="mb-4">{{ $apartment->title }}</h1>
 
-        <img src="{{ $apartment->cover_image }}" alt="immagine di copertina dell'appartamento">
+        <img src="{{ asset('storage/' . $apartment->cover_image) }}" alt="immagine di copertina dell'appartamento">
+        @foreach ($images as $image)
+            <img src="{{ $image->url }}" alt="">
+        @endforeach
 
         <p class="mt-4">{{ $apartment->description }}</p>
     </div>

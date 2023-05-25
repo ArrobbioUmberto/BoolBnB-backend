@@ -21,7 +21,9 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
+        $user_id = Auth::id();
+        $apartments = Apartment::where('user_id', $user_id)->get();
+
 
         return view('apartments.index', compact('apartments'));
     }
@@ -60,6 +62,10 @@ class ApartmentController extends Controller
             $cover_path = Storage::put('uploads', $data['cover_image']);
             $data['cover_image'] = $cover_path;
         }
+        // if ($request->hasFile('images')) {
+        //     $cover_path = Storage::put('uploads', $data['cover_image']);
+        //     $data['cover_image'] = $cover_path;
+        // }
 
         $apartment = Apartment::create($data);
 
@@ -67,6 +73,7 @@ class ApartmentController extends Controller
         if (isset($data['services'])) {
             $apartment->services()->attach($data['services']);
         }
+
 
         return to_route('apartments.show', $apartment);
     }
@@ -79,7 +86,10 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        return view('apartments.show', compact('apartment'));
+        $this->authorize('view', $apartment);
+
+        $images = Image::where($apartment->id, 'apartment_id');
+        return view('apartments.show', compact('apartment', 'images'));
     }
 
     /**
@@ -90,8 +100,8 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
+        $this->authorize('view', $apartment);
         $services = Service::all();
-
         return view('apartments.edit', compact('apartment', 'services'));
     }
 
@@ -104,7 +114,7 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        //$this->authorize('update', $apartment);
+        $this->authorize('update', $apartment);
 
         $data = $request->validated();
 
@@ -143,6 +153,10 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
+        if ($apartment->user_id != Auth::id()) {
+            abort(403, 'NO');
+        }
+
         $apartment->delete();
 
         return to_route('apartments.index');
