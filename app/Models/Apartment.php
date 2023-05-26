@@ -38,7 +38,7 @@ class Apartment extends Model
     {
         return $this->services->pluck('id')->all();
     }
-
+    protected $with = ['user', 'services', 'sponsorships', 'images'];
     protected $fillable = [
         'title',
         'rooms',
