@@ -9,6 +9,11 @@
             <div class="col-md-8 col-md-offset-2">
                 <div id="dropin-container"></div>
                 <button id="submit-button">Request payment method</button>
+                <form action="{{ route('sponsorship.store', ['apartment' => $apartment, 'sponsorship' => $sponsorship]) }}"
+                    method="POST">
+                    @csrf
+                    <button type="submit">Torna al tuo appartamento</button>
+                </form>
             </div>
         </div>
     </div>
@@ -19,7 +24,6 @@
             container: '#dropin-container'
         }, function(createErr, instance) {
             button.addEventListener('click', function() {
-                console.log('ciao')
                 instance.requestPaymentMethod(function(err, payload) {
                     $.get('{{ route('payment.make') }}', {
                         payload

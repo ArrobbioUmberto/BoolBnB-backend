@@ -40,9 +40,9 @@ class SponsorshipController extends Controller
      * @param  \App\Http\Requests\StoreSponsorshipRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSponsorshipRequest $request)
+    public function store(StoreSponsorshipRequest $request, Apartment $apartment, Sponsorship $sponsorship)
     {
-        //
+        return back();
     }
 
     /**
