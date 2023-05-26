@@ -162,16 +162,17 @@ is-invalid
                 key: "5yE1GYuQA7WyAdPZ1zAeJtBq8cKtoae3",
                 language: "it-IT",
                 limit: 5,
+                countrySet: "IT"
             },
             autocompleteOptions: {
                 key: "5yE1GYuQA7WyAdPZ1zAeJtBq8cKtoae3",
                 language: "it-IT",
+                countrySet: "IT"
             },
         }
         var ttSearchBox = new tt.plugins.SearchBox(tt.services, options, {
             key: "5yE1GYuQA7WyAdPZ1zAeJtBq8cKtoae3",
             container: 'searchbar',
-            value: "ciaone"
         })
         var searchBoxHTML = ttSearchBox.getSearchBoxHTML()
         ttSearchBox.on("tomtom.searchbox.resultselected", function(data) {
