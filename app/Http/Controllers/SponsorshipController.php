@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSponsorshipRequest;
 use App\Http\Requests\UpdateSponsorshipRequest;
+use App\Models\Apartment;
 use App\Models\Sponsorship;
 use Illuminate\Http\Request;
 use Braintree;
@@ -16,9 +17,11 @@ class SponsorshipController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Apartment $apartment)
     {
-        //
+
+        $sponsorships = Sponsorship::all();
+        return view('payment.sponsor', compact('sponsorships', 'apartment'));
     }
 
     /**

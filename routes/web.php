@@ -34,9 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'apartment:slug']);
 
     Route::get('/payment/make', [PaymentsController::class, 'make'])->name('payment.make');
-    Route::get('/payment', function () {
-        return view('payment.payment');
-    })->name('check');
+    Route::get('/payment/{apartment:slug}/{sponsorship}', [PaymentsController::class, 'index'])->name('check');
+    Route::get('/sponsorship/{apartment:slug}', [SponsorshipController::class, 'index'])->name('sponsorship.index');
 });
 
 
