@@ -3,6 +3,8 @@
 
 @section('content')
     <div class="container">
+        <span>{{ $apartment->id }}</span>
+        <span>{{ $sponsorship->id }}</span>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div id="dropin-container"></div>
