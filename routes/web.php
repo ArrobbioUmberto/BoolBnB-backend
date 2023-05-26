@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/payment/make', [PaymentsController::class, 'make'])->name('payment.make');
     Route::get('/payment/{apartment:slug}/{sponsorship}', [PaymentsController::class, 'index'])->name('check');
     Route::get('/sponsorship/{apartment:slug}', [SponsorshipController::class, 'index'])->name('sponsorship.index');
+    Route::post('/sponsorship/{apartment:slug}/{sponsorship}', [SponsorshipController::class, 'store'])->name('sponsorship.store');
 });
 
 
