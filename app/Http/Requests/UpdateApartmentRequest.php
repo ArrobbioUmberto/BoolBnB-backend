@@ -29,8 +29,7 @@ class UpdateApartmentRequest extends FormRequest
                 "required",
                 "string",
                 "max:255",
-                "min:8",
-                Rule::unique('apartments', "title")->ignore($this->apartment),
+                "min:8"
             ],
             'rooms' => "required|numeric|min:1|max:40",
             'beds' => "required|numeric|min:1|max:30",

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSponsorshipRequest;
 use App\Http\Requests\UpdateSponsorshipRequest;
 use App\Models\Sponsorship;
+use Illuminate\Http\Request;
+use Braintree;
+use Braintree\Transaction;
 
 class SponsorshipController extends Controller
 {
@@ -82,5 +85,13 @@ class SponsorshipController extends Controller
     public function destroy(Sponsorship $sponsorship)
     {
         //
+    }
+    public function token(Request $request)
+    {
+
+
+        $clientToken = Braintree\ClientToken::generate();
+
+        return view('payment.sponsorship', ['token' => $clientToken]);
     }
 }
