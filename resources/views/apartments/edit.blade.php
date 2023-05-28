@@ -8,17 +8,51 @@
         <form action="{{ route('apartments.update', $apartment) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
+            <figure class="mb-3">
+                <img src="{{ asset('storage/' . $apartment->cover_image) }}" alt="immagine di copertina" width="50">
+            </figure>
             <div class="mb-3">
                 <label for="cover_image" class="form-label">Immagine di copertina</label>
-                <input type="file" name="cover_image" class="form-control @error('cover_image') is-invalid @enderror"
+                <input type="file" name="cover_image" class="form-control"
                     value="{{ old('cover_image', $apartment->cover_image) }}" id="cover_image"
                     aria-describedby="cover_image">
-                @error('cover_image')
+            </div>
+
+            @if ($apartment->images)
+                @foreach ($images as $image)
+                <div class="mb-3">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <img src="{{ asset('storage/' .$image->url) }}" alt="{{$image->name}}" width="50">
+                            <button type="submit" name="deleteImage" value="{{$image->id}}" class="text-danger delete-btn">X</button>
+                        </div>
+                        <div class="col-11">
+                            @if ($image->name)
+                            <label for="name[]" class="form-label">Didascalia</label>
+                            <p>{{$image->name}}</p>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                    
+                @endforeach
+            @endif
+
+
+            <div class="mb-3">
+               
+                <label class="form-label" for="images">Altre immagini</label>
+                <input class="form-control  @error('images') is-invalid @enderror" type="file" id="images" multiple
+                    name="images[]" value="{{old('images')}}">
+                @error('images')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
+                
+               
             </div>
+
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo</label>
                 <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
@@ -138,4 +172,11 @@
             </div>
         </form>
     </div>
+
+    <script>
+        
+      
+    </script>
+
+  
 @endsection

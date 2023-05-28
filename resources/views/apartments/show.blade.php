@@ -17,11 +17,17 @@
         <h1 class="mb-4">{{ $apartment->title }}</h1>
 
         <img src="{{ asset('storage/' . $apartment->cover_image) }}" alt="immagine di copertina dell'appartamento">
-        @foreach ($images as $image)
-            <img src="{{ $image->url }}" alt="">
-        @endforeach
 
         <p class="mt-4">{{ $apartment->description }}</p>
+    </div>
+
+    <div class="container text-center py-4">
+        @forelse ($images as $image)
+            <img src="{{ asset('storage/' .$image->url) }}" alt="">
+        @empty
+            Non hai caricato altre immagini
+        @endforelse
+       
     </div>
 
     <div class="container">
