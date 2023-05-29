@@ -52,6 +52,17 @@
             </li>
             <li> Prezzo a notte: {{ $apartment->price }}&euro;</li>
             <li> Proprietario: {{ $apartment->user->first_name }} {{ $apartment->user->last_name }}</li>
+            <li>
+                @if ($apartment->sponsorships->count() > 0)
+                    <h2>Sponsorizzazione collegata:</h2>
+                    <p>{{ $apartment->sponsorships->last()->name }}</p>
+                    <p>Data di inizio: {{ $apartment->sponsorships->last()->pivot->start_date }}</p>
+                    <p>Data di fine: {{ $apartment->sponsorships->last()->pivot->end_date }}</p>
+                @else
+                    <h2>Sponsorizzazione collegata:</h2>
+                    <p>Nessuna </p>
+                @endif
+            </li>
             <li> <a href="{{ route('sponsorship.index', $apartment) }}">Acquista sponsor</a> </li>
         </ul>
 

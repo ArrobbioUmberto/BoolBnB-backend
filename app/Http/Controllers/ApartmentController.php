@@ -8,12 +8,17 @@ use App\Models\Image;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\StoreImageRequest;
 use App\Http\Requests\UpdateApartmentRequest;
+
+use App\Models\Sponsorship;
+
 use App\Http\Requests\UpdateImageRequest;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 
 
 class ApartmentController extends Controller
@@ -101,12 +106,12 @@ class ApartmentController extends Controller
      * @param  \App\Models\Apartment  $apartment
      * @return \Illuminate\Http\Response
      */
-    public function show(Apartment $apartment)
+    public function show(Apartment $apartment, Sponsorship $sponsorship)
     {
         $this->authorize('view', $apartment);
 
         $images = Image::where('apartment_id', $apartment->id)->get();
-        return view('apartments.show', compact('apartment', 'images'));
+        return view('apartments.show', compact('apartment', 'images','sponsorship'));
     }
 
     /**

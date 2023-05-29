@@ -9,6 +9,7 @@ use App\Models\Sponsorship;
 use Illuminate\Http\Request;
 use Braintree;
 use Braintree\Transaction;
+use Illuminate\Support\Carbon;
 
 class SponsorshipController extends Controller
 {
@@ -42,7 +43,22 @@ class SponsorshipController extends Controller
      */
     public function store(StoreSponsorshipRequest $request, Apartment $apartment, Sponsorship $sponsorship)
     {
-        return back();
+        $startDate = Carbon::now();
+        $endDate = $startDate->copy();
+
+        if ($sponsorship->id == 1) {
+            $endDate->addDay();
+        } elseif ($sponsorship->id == 2) {
+            $endDate->addDays(3);
+        } elseif ($sponsorship->id == 3) {
+            $endDate->addDays(6);
+        }
+
+        $apartment->sponsorships()->attach($sponsorship->id, [
+            'start_date' => $startDate,
+            'end_date' => $endDate,
+        ]);
+        return redirect()->route('apartments.show', compact('apartment', 'sponsorship'));
     }
 
     /**
