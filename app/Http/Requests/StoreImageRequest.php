@@ -13,7 +13,7 @@ class StoreImageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class StoreImageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'url' => 'nullable|image|max:3072',
+            'name' => 'nullable|min:8|max:255'
         ];
     }
 }
