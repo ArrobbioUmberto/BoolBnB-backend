@@ -13,4 +13,8 @@ class Sponsorship extends Model
     {
         return $this->belongsToMany(Apartment::class);
     }
+    protected $fillable = [
+        'start_date',
+        'end_date'
+    ];
 }
