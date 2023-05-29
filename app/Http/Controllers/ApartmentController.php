@@ -6,9 +6,16 @@ use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\Image;
 use App\Http\Requests\StoreApartmentRequest;
+use App\Http\Requests\StoreImageRequest;
 use App\Http\Requests\UpdateApartmentRequest;
+
 use App\Models\Sponsorship;
+
+use App\Http\Requests\UpdateImageRequest;
+use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
@@ -48,10 +55,9 @@ class ApartmentController extends Controller
      * @param  \App\Http\Requests\StoreApartmentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreApartmentRequest $request)
+    public function store(StoreApartmentRequest $request, StoreImageRequest $imgRequ)
     {
         $data = $request->validated();
-
 
         //genero slug
         $uniqueId = Str::random(8);
@@ -60,15 +66,11 @@ class ApartmentController extends Controller
         //autenticazione
         $data['user_id'] = Auth::id();
 
-        //salvo le immagini
+        //salvo immagine di copertina
         if ($request->hasFile('cover_image')) {
             $cover_path = Storage::put('uploads', $data['cover_image']);
             $data['cover_image'] = $cover_path;
         }
-        // if ($request->hasFile('images')) {
-        //     $cover_path = Storage::put('uploads', $data['cover_image']);
-        //     $data['cover_image'] = $cover_path;
-        // }
 
         $apartment = Apartment::create($data);
 
@@ -76,16 +78,24 @@ class ApartmentController extends Controller
         if (isset($data['services'])) {
             $apartment->services()->attach($data['services']);
         }
-        // if($request->hasFile("images")){
-        //     $files=$request->file("images");
-        //     foreach($files as $file){
 
-        //         $request['apartment_id']=$apartment->id;
-        //         $file->move(\public_path("/images"),$imageName);
-        //         Image::create($request->all());
+        //salvo le immagini
 
-        //     }
-        // }
+        $imageValidate = $imgRequ->validated();
+
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            foreach ($images as $image) {
+
+                $image_path = Storage::put('uploads', $image);
+                $imageValidate = [
+                    "apartment_id" => $apartment->id,
+                    "url" => $image_path,
+                    "name" => $imageValidate['name'] ?? null
+                ];
+                Image::create($imageValidate);
+            }
+        }
 
         return to_route('apartments.show', $apartment);
     }
@@ -100,8 +110,8 @@ class ApartmentController extends Controller
     {
         $this->authorize('view', $apartment);
 
-        $images = Image::where($apartment->id, 'apartment_id');
-        return view('apartments.show', compact('apartment', 'images', 'sponsorship'));
+        $images = Image::where('apartment_id', $apartment->id)->get();
+        return view('apartments.show', compact('apartment', 'images','sponsorship'));
     }
 
     /**
@@ -114,7 +124,8 @@ class ApartmentController extends Controller
     {
         $this->authorize('view', $apartment);
         $services = Service::all();
-        return view('apartments.edit', compact('apartment', 'services'));
+        $images = Image::where('apartment_id', $apartment->id)->get();
+        return view('apartments.edit', compact('apartment', 'services', 'images'));
     }
 
     /**
@@ -124,7 +135,7 @@ class ApartmentController extends Controller
      * @param  \App\Models\Apartment  $apartment
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateApartmentRequest $request, Apartment $apartment)
+    public function update(UpdateApartmentRequest $request, Apartment $apartment, Image $image, UpdateImageRequest $imgRequ)
     {
         $this->authorize('update', $apartment);
 
@@ -132,7 +143,8 @@ class ApartmentController extends Controller
 
         //modifica dello slug se cambia il titolo
         if ($data['title'] !== $apartment['title']) {
-            $data['slug'] = Str::slug($data['title']);
+            $uniqueId = Str::random(8);
+            $data['slug'] = Str::slug($data['title']) . '-' . $uniqueId;
         }
 
         //salvataggio e modifica immagine di copertina
@@ -154,8 +166,39 @@ class ApartmentController extends Controller
             $apartment->services()->sync([]);
         }
 
+        //salvo nuove immagini
+        $imageValidate = $imgRequ->validated();
+
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            foreach ($images as $image) {
+
+                $image_path = Storage::put('uploads', $image);
+                $imageValidate = [
+                    "apartment_id" => $apartment->id,
+                    "url" => $image_path,
+                    "name" => $imageValidate['name'] ?? null
+                ];
+                Image::create($imageValidate);
+            }
+        }
+
+        //elimino le immagini
+        if ($request->has('deleteImage')) {
+            $id = $request->input('deleteImage');
+
+            if ($image && Storage::exists($image)) {
+                Storage::delete($image);
+            }
+            Image::find($id)->delete();
+
+            return back();
+        }
+
+
         return to_route('apartments.show', $apartment);
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -168,6 +211,18 @@ class ApartmentController extends Controller
         if ($apartment->user_id != Auth::id()) {
             abort(403, 'NO');
         }
+
+        if ($apartment->cover_image && Storage::exists($apartment->cover_image)) {
+            Storage::delete($apartment->cover_image);
+        }
+
+        $images = Image::where('apartment_id', $apartment->id)->get();
+        foreach ($images as $image) {
+            if ($image && Storage::exists($image)) {
+                Storage::delete($image);
+            }
+        }
+
 
         $apartment->delete();
 
