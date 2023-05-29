@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 
 class UpdateApartmentRequest extends FormRequest
 {
@@ -38,7 +39,10 @@ class UpdateApartmentRequest extends FormRequest
             'visibility' => "required|boolean",
             'price' => "required|numeric|min:20|max:9999",
             'description' => "required|string|min:8|max:2000",
-            'cover_image' => "image|max:3072",
+            'cover_image' => [
+                File::image()
+                    ->max(3072),
+            ],
             'services' => "exists:services,id"
         ];
     }

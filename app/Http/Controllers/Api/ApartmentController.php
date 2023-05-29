@@ -21,6 +21,15 @@ class ApartmentController extends Controller
             'results' => $results,
         ]);
     }
+    public function search($city)
+    {
+        $towns = Apartment::where('city', $city)->get();
+        return response()->json([
+            'success' => true,
+            'results' => $towns,
+        ]);
+    }
+
 
     /**
      * Store a newly created resource in storage.

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class StoreApartmentRequest extends FormRequest
 {
@@ -34,7 +35,11 @@ class StoreApartmentRequest extends FormRequest
             'visibility' => "required|boolean",
             'price' => "required|numeric|min:20|max:9999",
             'description' => "required|string|min:8|max:2000",
-            'cover_image' => "required|image|max:3072",
+            'cover_image' => [
+                'required',
+                File::image()
+                    ->max(3072),
+            ],
             'services' => "exists:services,id",
             'lat' => "required",
             'lng' => "required"
