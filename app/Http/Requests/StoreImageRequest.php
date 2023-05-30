@@ -25,12 +25,12 @@ class StoreImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'url' => [
+            'images.*.url' => [
                 'nullable',
                 File::image()
                     ->max(3072)
             ],
-            'name' => 'nullable|min:8|max:255'
+            'caption.*.name' => 'nullable|min:8|max:255'
         ];
     }
 }
