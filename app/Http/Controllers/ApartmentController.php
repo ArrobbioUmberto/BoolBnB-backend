@@ -8,17 +8,13 @@ use App\Models\Image;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\StoreImageRequest;
 use App\Http\Requests\UpdateApartmentRequest;
-
 use App\Models\Sponsorship;
-
 use App\Http\Requests\UpdateImageRequest;
-use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Support\Carbon;
+
 
 
 class ApartmentController extends Controller
@@ -57,6 +53,7 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request, StoreImageRequest $imgRequ)
     {
+        //dd($request['caption']);
         $data = $request->validated();
 
         //genero slug
@@ -85,13 +82,22 @@ class ApartmentController extends Controller
 
         if ($request->hasFile('images')) {
             $images = $request->file('images');
-            foreach ($images as $image) {
+            $captions = $request->input('caption');
+
+            foreach ($images as $key => $image) {
 
                 $image_path = Storage::put('uploads', $image);
+
+                if (isset($captions[$key])) {
+                    $image_name = $captions[$key];
+                } else {
+                    $image_name = null;
+                }
+
                 $imageValidate = [
                     "apartment_id" => $apartment->id,
                     "url" => $image_path,
-                    "name" => $imageValidate['name'] ?? null
+                    "name" => $image_name
                 ];
                 Image::create($imageValidate);
             }
@@ -111,7 +117,7 @@ class ApartmentController extends Controller
         $this->authorize('view', $apartment);
 
         $images = Image::where('apartment_id', $apartment->id)->get();
-        return view('apartments.show', compact('apartment', 'images','sponsorship'));
+        return view('apartments.show', compact('apartment', 'images', 'sponsorship'));
     }
 
     /**
@@ -171,17 +177,27 @@ class ApartmentController extends Controller
 
         if ($request->hasFile('images')) {
             $images = $request->file('images');
-            foreach ($images as $image) {
+            $captions = $request->input('caption');
+
+            foreach ($images as $key => $image) {
 
                 $image_path = Storage::put('uploads', $image);
+
+                if (isset($captions[$key])) {
+                    $image_name = $captions[$key];
+                } else {
+                    $image_name = null;
+                }
+
                 $imageValidate = [
                     "apartment_id" => $apartment->id,
                     "url" => $image_path,
-                    "name" => $imageValidate['name'] ?? null
+                    "name" => $image_name
                 ];
                 Image::create($imageValidate);
             }
         }
+
 
         //elimino le immagini
         if ($request->has('deleteImage')) {

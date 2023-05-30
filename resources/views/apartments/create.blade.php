@@ -114,15 +114,36 @@
                     </div>
                 @enderror
             </div>
-            <div class="mb-3">
-                <label class="form-label" for="images">Altre immagini</label>
-                <input class="form-control  @error('images') is-invalid @enderror" type="file" id="images" multiple
-                    name="images[]">
-                @error('images')
-                    <div class="invalid-feedback">
-                        {{ $message }}
+            
+            <div id="add-field">
+                <div class="mb-3" >
+                    <div class="row align-items-end gap-3" >
+                        <div class="col-4">
+                            <label class="form-label" for="images">Altre immagini</label>
+                            <input class="form-control  @error('images') is-invalid @enderror" type="file" id="images"
+                                name="images[0]" >
+                            @error('images')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-7">
+                            <label for="name" class="form-label">Didascalia</label>
+                            <input type="text" name="caption[0]" class="form-control @error('name') is-invalid @enderror"
+                                 id="name" aria-describedby="name" placeholder="Aggiungi una didascalia">
+                            @error('name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col text-end">
+                            <button type="button" class="add-btn" id="add">+</button>
+                        </div>
                     </div>
-                @enderror
+                   
+                </div>
             </div>
 
             <div class="mb-3">
@@ -131,9 +152,7 @@
                 @foreach ($services as $service)
                     <div class="form-check">
                         <input type="checkbox" name="services[]" @checked(in_array($service->id, old('services', [])))
-                            class="form-check-input  @error('services')
-is-invalid
-@enderror" value="{{ $service->id }}"
+                            class="form-check-input  @error('services') is-invalid @enderror" value="{{ $service->id }}"
                             id="service">
                         <label for="service" class="form-check-label">{{ $service->name }}</label>
                     </div>
@@ -157,6 +176,40 @@ is-invalid
         </form>
     </div>
     <script>
+        $("#add").click(function () {
+            $("#add-field").append(
+                `<div class="mb-3">
+                    <div class="row align-items-end gap-3" id="add-field">
+                    <div class="col-4">
+                        <input class="form-control  @error('images') is-invalid @enderror" type="file" id="images"
+                            name="images[]"">
+                        @error('images')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-7">
+                        <input type="text" name="caption[]" class="form-control @error('name') is-invalid @enderror"
+                             id="name" aria-describedby="name" placeholder="Aggiungi una didascalia">
+                        @error('name')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col text-end">
+                        <button type="button" class="del-btn remove-input-field">-</button>
+                    </div>
+                    
+                </div>
+                </div>`
+                );
+        });
+        $('body').on('click', '.remove-input-field', function () {
+            $(this).closest('.mb-3').remove();
+        });
+
         var options = {
             searchOptions: {
                 key: "5yE1GYuQA7WyAdPZ1zAeJtBq8cKtoae3",
