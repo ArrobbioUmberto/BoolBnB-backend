@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -56,4 +57,16 @@ class Apartment extends Model
         'lat',
         'lng'
     ];
+
+    protected function coverPath(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value, $attributes) {
+                return asset('storage/' . $attributes['cover_image']);
+            }
+        );
+    }
+
+
+    protected $appends = ['cover_path'];
 }
