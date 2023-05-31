@@ -23,11 +23,11 @@
 
     <div class="container text-center py-4">
         @forelse ($images as $image)
-            <img src="{{ asset('storage/' .$image->url) }}" alt="">
+            <img src="{{ asset('storage/' . $image->url) }}" alt="">
         @empty
             Non hai caricato altre immagini
         @endforelse
-       
+
     </div>
 
     <div class="container">
@@ -58,13 +58,49 @@
                     <p>{{ $apartment->sponsorships->last()->name }}</p>
                     <p>Data di inizio: {{ $apartment->sponsorships->last()->pivot->start_date }}</p>
                     <p>Data di fine: {{ $apartment->sponsorships->last()->pivot->end_date }}</p>
+                    <p id='demo'></p>
+                    <script>
+                        var countDownDate = new Date("{{ $apartment->sponsorships->last()->pivot->end_date }}").getTime();
+                        console.log(countDownDate)
+
+                        // Update the count down every 1 second
+                        var x = setInterval(function() {
+
+                            // Get today's date and time
+                            var now = new Date().getTime();
+
+
+
+                            // Find the distance between now and the count down date
+                            var distance = countDownDate - now;
+
+                            // Time calculations for days, hours, minutes and seconds
+                            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+                            // Output the result in an element with id="demo"
+                            if (distance > 0) {
+                                $("#demo").text(days + "d " + hours + "h " +
+                                    minutes + "m " + seconds + "s ");
+
+                            } else {
+                                $('#demo').html("<h1>La tua sponsorizzazione è terminata</h1>")
+                            }
+
+
+
+
+                        }, 1000);
+                    </script>
                 @else
                     <h2>Sponsorizzazione collegata:</h2>
                     <p>Nessuna </p>
+                    <a href="{{ route('sponsorship.index', $apartment) }}">Acquista sponsor</a>
                 @endif
             </li>
-            <li> <a href="{{ route('sponsorship.index', $apartment) }}">Acquista sponsor</a> </li>
         </ul>
-
     </div>
 @endsection
