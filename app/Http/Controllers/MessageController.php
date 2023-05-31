@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
+use App\Models\Apartment;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -15,7 +17,10 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::id(); // qui prendiamo l'user loggato 
+        $apartments_id = Apartment::where('user_id', $user_id)->get(); // qui prendiamo gli appartamenti legati a quell'user
+        $messages = Message::whereIn('apartment_id', $apartments_id->pluck('id'))->get();
+        return view('messages.index', compact('messages', 'apartments_id', 'user_id'));
     }
 
     /**
@@ -47,7 +52,7 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        //
+        return view('messages.show', compact('message'));
     }
 
     /**
