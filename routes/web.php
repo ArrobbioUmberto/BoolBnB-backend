@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApartmentController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SponsorshipController;
 use App\Http\Controllers\PaymentsController;
@@ -37,6 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/payment/{apartment:slug}/{sponsorship}', [PaymentsController::class, 'index'])->name('check');
     Route::get('/sponsorship/{apartment:slug}', [SponsorshipController::class, 'index'])->name('sponsorship.index');
     Route::post('/sponsorship/{apartment:slug}/{sponsorship}', [SponsorshipController::class, 'store'])->name('sponsorship.store');
+
+    Route::get('/messages', [MessageController::class, 'index'])->name('message.index');
+    Route::get('/messages/{message}', [MessageController::class, 'show'])->name('message.show');
 });
 
 
