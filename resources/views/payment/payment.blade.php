@@ -6,16 +6,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-md-offset-2">
                 <div id="dropin-container"></div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
-                        <button id="submit-button" class="btn-bool">Effettua il pagamento</button>
-                    </div>
-               
+                <div class="row justify-content-end">
                     <form class="col-lg-6 col-md-12 text-end" action="{{ route('sponsorship.store', ['apartment' => $apartment, 'sponsorship' => $sponsorship]) }}"
                         method="POST">
                         @csrf
-                        <button type="submit" class="btn-bool">Torna al tuo appartamento</button>
+                        <button id="submit-button" class="btn-bool">Effettua il pagamento</button>
                     </form>
+                    
+                    {{-- <button type="button" class="btn-bool">Torna al tuo appartamento</button> --}}
                  
                 </div>
             </div>
