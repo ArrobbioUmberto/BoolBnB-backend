@@ -1,0 +1,10 @@
+@use './variables' as *;
+
+img {
+    max-width: 100%;
+}
+
+a{
+    color: currentColor !important;
+    text-decoration: none !important;
+}

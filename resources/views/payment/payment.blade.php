@@ -2,18 +2,22 @@
 
 
 @section('content')
-    <div class="container">
-        <span>{{ $apartment->id }}</span>
-        <span>{{ $sponsorship->id }}</span>
-        <div class="row">
+    <div class="container p-5">
+        <div class="row justify-content-center">
             <div class="col-md-8 col-md-offset-2">
                 <div id="dropin-container"></div>
-                <button id="submit-button">Request payment method</button>
-                <form action="{{ route('sponsorship.store', ['apartment' => $apartment, 'sponsorship' => $sponsorship]) }}"
-                    method="POST">
-                    @csrf
-                    <button type="submit">Torna al tuo appartamento</button>
-                </form>
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <button id="submit-button" class="btn-bool">Effettua il pagamento</button>
+                    </div>
+               
+                    <form class="col-lg-6 col-md-12 text-end" action="{{ route('sponsorship.store', ['apartment' => $apartment, 'sponsorship' => $sponsorship]) }}"
+                        method="POST">
+                        @csrf
+                        <button type="submit" class="btn-bool">Torna al tuo appartamento</button>
+                    </form>
+                 
+                </div>
             </div>
         </div>
     </div>

@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container p-4">
         <form action="{{ route('apartments.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
-                <label class="form-label" for="title">Titolo annuncio <span class="text-danger">*</span></label>
+                <label class="form-label fw-bold" for="title">Titolo<span class="text-danger">*</span></label>
                 <input class="form-control  @error('title') is-invalid @enderror" type="text" id="title" name="title"
                     value="{{ old('title') }}">
                 @error('title')
@@ -17,9 +17,9 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="description">Descrizione <span class="text-danger">*</span></label>
-                <input class="form-control  @error('description') is-invalid @enderror" type="text" id="description"
-                    name="description" value="{{ old('description') }}">
+                <label class="form-label fw-bold" for="description">Descrizione <span class="text-danger">*</span></label>
+                <textarea class="form-control  @error('description') is-invalid @enderror" type="text" id="description"
+                name="description" value="{{ old('description') }}" rows="5"></textarea>
                 @error('description')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -28,84 +28,72 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="rooms">Numero di stanze <span class="text-danger">*</span></label>
-                <input class="form-control  @error('rooms') is-invalid @enderror" type="number" id="rooms"
-                    name="rooms" value="{{ old('rooms') }}">
-                @error('rooms')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="beds">Numero di posti letto <span class="text-danger">*</span></label>
-                <input class="form-control  @error('beds') is-invalid @enderror" type="number" id="beds"
-                    name="beds" value="{{ old('beds') }}">
-                @error('beds')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="bathrooms">Numero di bagni <span class="text-danger">*</span></label>
-                <input class="form-control  @error('bathrooms') is-invalid @enderror" type="number" id="bathrooms"
-                    name="bathrooms" value="{{ old('bathrooms') }}">
-                @error('bathrooms')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="sqm">Metri quadri <span class="text-danger">*</span></label>
-                <input class="form-control  @error('sqm') is-invalid @enderror" type="text" id="sqm" name="sqm"
-                    value="{{ old('sqm') }}">
-                @error('sqm')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="address">Indirizzo <span class="text-danger">*</span></label>
+                <label class="form-label fw-bold" for="address">Indirizzo <span class="text-danger">*</span></label>
                 <div id="searchbar">
                 </div>
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="visibility">Visibilità <span class="text-danger">*</span></label>
-                <select class="form-select  @error('visibility') is-invalid @enderror" id="visibility" name="visibility"
-                    value="{{ old('visibility') }}">
-                    <option value="" selected>Scegli la visibilità del tuo appartamento?</option>
-                    <option value="1" @selected(old('visibility'))>Pubblico</option>
-                    <option value="0" @selected(old('visibility'))>Privato</option>
-
-                </select>
-                @error('visibility')
-                    <div class="invalid-feedback">
-                        {{ $message }}
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-12 mb-3">
+                        <label class="form-label fw-bold" for="rooms">Numero di stanze <span class="text-danger">*</span></label>
+                        <input class="form-control  @error('rooms') is-invalid @enderror" type="number" id="rooms"
+                        name="rooms" value="{{ old('rooms') }}">
+                        @error('rooms')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
-                @enderror
+                    <div class="col-lg-3 col-md-4 col-sm-13 mb-3">
+                        <label class="form-label fw-bold" for="beds">Numero di posti letto <span class="text-danger">*</span></label>
+                        <input class="form-control  @error('beds') is-invalid @enderror" type="number" id="beds"
+                        name="beds" value="{{ old('beds') }}">
+                        @error('beds')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-12 mb-3">
+                        <label class="form-label fw-bold" for="bathrooms">Numero di bagni <span class="text-danger">*</span></label>
+                        <input class="form-control  @error('bathrooms') is-invalid @enderror" type="number" id="bathrooms"
+                            name="bathrooms" value="{{ old('bathrooms') }}">
+                        @error('bathrooms')
+                            <div class="invalid-feedback">
+                            {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-12 mb-3">
+                        <label class="form-label fw-bold" for="sqm">Metri quadri <span class="text-danger">*</span></label>
+                        <input class="form-control  @error('sqm') is-invalid @enderror" type="text" id="sqm" name="sqm"
+                        value="{{ old('sqm') }}">
+                        @error('sqm')
+                            <div class="invalid-feedback">
+                            {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-12 mb-3">
+                        <label class="form-label fw-bold" for="price">Prezzo <span class="text-danger">*</span></label>
+                        <div class="input-group ">
+                            <span class="input-group-text">€</span>
+                            <input class="form-control  @error('price') is-invalid @enderror" type="text" id="price"
+                            name="price" value="{{ old('price') }}">
+                        </div>
+                            @error('price')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                    </div>
+
+                </div>
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="price">Prezzo <span class="text-danger">*</span></label>
-                <input class="form-control  @error('price') is-invalid @enderror" type="text" id="price"
-                    name="price" value="{{ old('price') }}">
-                @error('price')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="cover-image">Immagine di copertina <span class="text-danger">*</span></label>
+                <label class="form-label fw-bold" for="cover-image">Immagine di copertina <span class="text-danger">*</span></label>
                 <input class="form-control  @error('cover_image') is-invalid @enderror" type="file" id="cover-image"
                     name="cover_image" value="{{ old('cover-image') }}">
                 @error('cover_image')
@@ -117,9 +105,9 @@
             
             <div id="add-field">
                 <div class="mb-3" >
-                    <div class="row align-items-end gap-3" >
-                        <div class="col-4">
-                            <label class="form-label" for="images">Altre immagini</label>
+                    <div class="row align-items-end gap-3">
+                        <div class="col-lg-4 col-sm-12">
+                            <label class="form-label fw-bold" for="images">Altre immagini</label>
                             <input class="form-control  @error('images') is-invalid @enderror" type="file" id="images"
                                 name="images[0]" >
                             @error('images')
@@ -128,8 +116,8 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="col-7">
-                            <label for="name" class="form-label">Didascalia</label>
+                        <div class="col-lg-6 col-sm-12">
+                            <label for="name" class="form-label fw-bold">Didascalia</label>
                             <input type="text" name="caption[0]" class="form-control @error('name') is-invalid @enderror"
                                  id="name" aria-describedby="name" placeholder="Aggiungi una didascalia">
                             @error('name')
@@ -138,7 +126,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="col text-end">
+                        <div class="col text-lg-end text-md-start">
                             <button type="button" class="add-btn" id="add">+</button>
                         </div>
                     </div>
@@ -146,23 +134,30 @@
                 </div>
             </div>
 
-            <div class="mb-3">
-                <label class="form-label" for="services">Servizi </label>
-
-                @foreach ($services as $service)
-                    <div class="form-check">
-                        <input type="checkbox" name="services[]" @checked(in_array($service->id, old('services', [])))
-                            class="form-check-input  @error('services') is-invalid @enderror" value="{{ $service->id }}"
-                            id="service">
-                        <label for="service" class="form-check-label">{{ $service->name }}</label>
-                    </div>
+            <div class="mb-4">
+                <label class="form-label fw-bold" for="services">Servizi </label>
+                @foreach($services->chunk(3) as $row)
+                <div class="row m-0">
+                    @foreach ($row as $service)
+                        <div class="col-4 form-check">
+                                
+                            <input type="checkbox" name="services[]" @checked(in_array($service->id, old('services', [])))
+                                class="form-check-input  @error('services') is-invalid @enderror" value="{{ $service->id }}"
+                                id="service">
+                            <label for="service" class="form-check-label">{{ $service->name }}</label>
+                                
+                        </div>
+                        @error('services')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    @endforeach
+                </div>
                 @endforeach
-                @error('services')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+                
             </div>
+
             <div>
                 <input type="hidden" id="address" value="" name="address">
                 <input type="hidden" id="city" value="" name="city">
@@ -170,9 +165,13 @@
                 <input type="hidden" id="lng" value="" name="lng">
             </div>
 
-            <button type="submit" class="btn btn-success">
-                Invia
-            </button>
+          <div class="col-auto">
+            
+                <button type="submit" class="btn btn-bool me-2">Invia</button>
+                
+                <a href="{{route('apartments.index')}}" class="btn btn-bool-out">Indietro</a>
+       
+          </div>
         </form>
     </div>
     <script>
@@ -180,7 +179,7 @@
             $("#add-field").append(
                 `<div class="mb-3">
                     <div class="row align-items-end gap-3" id="add-field">
-                    <div class="col-4">
+                    <div class="col-lg-4 col-sm-12">
                         <input class="form-control  @error('images') is-invalid @enderror" type="file" id="images"
                             name="images[]"">
                         @error('images')
@@ -189,7 +188,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col-7">
+                    <div class="col-lg-6 col-sm-12">
                         <input type="text" name="caption[]" class="form-control @error('name') is-invalid @enderror"
                              id="name" aria-describedby="name" placeholder="Aggiungi una didascalia">
                         @error('name')
@@ -198,7 +197,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col text-end">
+                    <div class="col text-lg-end text-md-start">
                         <button type="button" class="del-btn remove-input-field">-</button>
                     </div>
                     
