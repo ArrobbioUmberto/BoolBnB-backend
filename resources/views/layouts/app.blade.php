@@ -37,7 +37,7 @@
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                <a class="navbar-brand d-flex align-items-center" href="{{ url('http://localhost:5174/') }}">
                   <div class="logo">
                         <img src="{{Vite::asset('resources/images/logo-boolbnb-nero.png')}}" alt="">
                     </div>
@@ -58,11 +58,11 @@
                         </li> --}}
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/apartments') }}">{{ __('Appartamenti') }}</a>
+                                <a class="nav-link" href="{{ url('/dashboard') }}">{{ __('Dashboard') }}</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/messages') }}">{{ __('Messaggi') }}</a>
-                            </li>
+                            </li> --}}
                         @endauth
                     </ul>
 
