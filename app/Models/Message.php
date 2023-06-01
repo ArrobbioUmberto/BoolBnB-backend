@@ -14,4 +14,10 @@ class Message extends Model
 
         return $this->belongsTo(Apartment::class);
     }
+    protected $fillable = [
+        'name',
+        'email',
+        'text',
+        'apartment_id'
+    ];
 }
