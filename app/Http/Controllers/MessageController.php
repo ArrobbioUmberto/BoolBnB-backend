@@ -39,10 +39,7 @@ class MessageController extends Controller
      * @param  \App\Http\Requests\StoreMessageRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMessageRequest $request)
-    {
-        $data = $request->validated();
-    }
+
 
     /**
      * Display the specified resource.

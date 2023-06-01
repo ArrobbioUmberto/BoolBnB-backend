@@ -27,6 +27,7 @@ class StoreMessageRequest extends FormRequest
             'name' => "required|string|min:2|max:255",
             'email' => "required|email|min:8|max:255",
             'text' => "required|string|min:8|max:2000",
+            'apartment_id' => "required"
         ];
     }
 }
