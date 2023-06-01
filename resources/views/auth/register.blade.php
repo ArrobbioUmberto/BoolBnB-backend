@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Registrazione') }}</div>
+                <div class="card-hd p-2">{{ __('Registrazione') }}</div>
 
-                <div class="card-body">
+                <div class="card-body bool-card">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -91,7 +91,7 @@
 
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-bool">
                                     {{ __('Registrati') }}
                                 </button>
                             </div>

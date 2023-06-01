@@ -32,7 +32,6 @@ class StoreApartmentRequest extends FormRequest
             'sqm' => "required|numeric|min:5|max:1000",
             'address' => "required|string|min:7|max:255",
             'city' => "required|string|min:2|max:100",
-            'visibility' => "required|boolean",
             'price' => "required|numeric|min:20|max:9999",
             'description' => "required|string|min:8|max:2000",
             'cover_image' => [
