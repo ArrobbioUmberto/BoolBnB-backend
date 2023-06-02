@@ -49,7 +49,7 @@ class SponsorshipController extends Controller
 
         if ($response) {
 
-            $startDate = Carbon::now();
+            $startDate = Carbon::now()->locale('it_IT')->timezone('Europe/Rome');
             $endDate = $startDate->copy();
 
             if ($sponsorship->id == 1) {
