@@ -28,7 +28,7 @@
                         </a>
                     </div>
                     <div class="col-3 fs-1 text-center">
-                        <a href="{{ url('/profile') }}">
+                        <a href="{{ url('profile') }}">
                             <div class="card bool-card-dark p-3">
                                 <i class="fa-solid fa-user mb-3 user"></i>
                                 <h5>Il tuo profilo</h5>  
