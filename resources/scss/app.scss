@@ -90,10 +90,17 @@
     border-color: $primary-color !important;
 }
 
-.ap-card:hover{
-  
-        transform: scale(1.1);
-        transition-duration: 0.5s;
-    
+.bool-card-dark{
+    border-color: $secondary-color !important;
 }
+
+.ap-card:hover{
+    transform: scale(1.1);
+    transition-duration: 0.5s;   
+}
+
+.icon i{
+    color: $primary-color;
+}
+
 
