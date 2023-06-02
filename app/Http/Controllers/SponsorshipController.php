@@ -9,6 +9,8 @@ use App\Models\Sponsorship;
 use Illuminate\Http\Request;
 use Braintree;
 use Braintree\Transaction;
+use Illuminate\Http\Client\Response as ClientResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 
 class SponsorshipController extends Controller
@@ -41,23 +43,29 @@ class SponsorshipController extends Controller
      * @param  \App\Http\Requests\StoreSponsorshipRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSponsorshipRequest $request, Apartment $apartment, Sponsorship $sponsorship)
+    public function store(StoreSponsorshipRequest $request, Apartment $apartment, Sponsorship $sponsorship, Response $response)
     {
-        $startDate = Carbon::now();
-        $endDate = $startDate->copy();
+        //dd($response);
 
-        if ($sponsorship->id == 1) {
-            $endDate->addDay();
-        } elseif ($sponsorship->id == 2) {
-            $endDate->addDays(3);
-        } elseif ($sponsorship->id == 3) {
-            $endDate->addDays(6);
+        if ($response) {
+
+            $startDate = Carbon::now();
+            $endDate = $startDate->copy();
+
+            if ($sponsorship->id == 1) {
+                $endDate->addDay();
+            } elseif ($sponsorship->id == 2) {
+                $endDate->addDays(3);
+            } elseif ($sponsorship->id == 3) {
+                $endDate->addDays(6);
+            }
+
+            $apartment->sponsorships()->attach($sponsorship->id, [
+                'start_date' => $startDate,
+                'end_date' => $endDate,
+            ]);
         }
 
-        $apartment->sponsorships()->attach($sponsorship->id, [
-            'start_date' => $startDate,
-            'end_date' => $endDate,
-        ]);
         return redirect()->route('apartments.show', compact('apartment', 'sponsorship'));
     }
 
