@@ -25,6 +25,6 @@
 
     </div>
     <div class="container">
-        <a href="{{route('apartments.index')}}" class="btn-bool">Indietro</a>
+        <a href="{{route('dashboard')}}" class="btn-bool">Indietro</a>
     </div>
 @endsection
