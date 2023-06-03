@@ -244,4 +244,12 @@ class ApartmentController extends Controller
 
         return to_route('apartments.index');
     }
+
+    public function enableToggle(Apartment $apartment)
+    {
+        $apartment->visibility = !$apartment->visibility;
+        $apartment->save();
+
+        return redirect()->back();
+    }
 }

@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/messages', [MessageController::class, 'index'])->name('message.index');
     Route::get('/messages/{message}', [MessageController::class, 'show'])->name('message.show');
+    Route::patch('apartments/{apartment}/toggle', [ApartmentController::class, 'enableToggle'])->name('apartment.toggle');
 });
 
 

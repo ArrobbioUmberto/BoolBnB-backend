@@ -19,30 +19,45 @@
                             <h4 class="card-title">{{ $apartment->title }}</h4>
                             <p class="card-location">{{$apartment->address . ', ' . $apartment->city}}</p>
                        
-                            <div class="d-flex gap-4 ">
-                                <div>
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex gap-3">
+                                    <div>
                                         <i class="fa-solid fa-magnifying-glass"></i>
                                     </div>
                                     
                                     <div>
-                                    <a href="{{ route('apartments.edit', $apartment) }}">
-                                        <i class="fa-solid fa-pencil"></i>
-                                    </a>
-                                </div>
+                                        <a href="{{ route('apartments.edit', $apartment) }}">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </a>
+                                    </div>
                                 
-                                <div>
-                                    <form method="POST" action="{{ route('apartments.destroy', $apartment) }}">
-                                        @csrf
-                                        
-                                        @method('DELETE')
-                                        
-                                        <button type="submit" class="border-0 bg-transparent">
-                                            <i class="text-danger fa-regular fa-trash-can"></i>
-                                        </button>
+                                    <div>
+                                        <form method="POST" action="{{ route('apartments.destroy', $apartment) }}">
+                                            @csrf
+                                            
+                                            @method('DELETE')
+                                            
+                                            <button type="submit" class="border-0 bg-transparent">
+                                                <i class="text-danger fa-regular fa-trash-can"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="ms-auto d-flex gap-2">
+                                    <span>Visibilit&agrave;</span>
+                                    <form class="align-self-center" action="{{ route('apartment.toggle', $apartment->id)}}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" class="border-0 bg-transparent p-0 ">
+                                        <i class="fa-solid {{$apartment->visibility ? 'fa-toggle-on toggle' : 'fa-toggle-off toggle' }}"></i>
+                                    </button>
                                     </form>
+                                    
                                 </div>
-                                
                             </div>
+
+                                
+                           
                         </div>
                     </div>
                 </a>
