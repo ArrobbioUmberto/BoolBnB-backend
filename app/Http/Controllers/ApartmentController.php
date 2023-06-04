@@ -244,4 +244,12 @@ class ApartmentController extends Controller
 
         return to_route('apartments.index')->with('alert-message', "Appartamento eliminato con successo")->with('alert-type', 'success');
     }
+
+    public function enableToggle(Apartment $apartment)
+    {
+        $apartment->visibility = !$apartment->visibility;
+        $apartment->save();
+
+        return redirect()->back();
+    }
 }
