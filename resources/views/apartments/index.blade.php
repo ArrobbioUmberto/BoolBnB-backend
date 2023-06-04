@@ -31,12 +31,12 @@
                                 </div>
                                 
                                 <div>
-                                    <form method="POST" action="{{ route('apartments.destroy', $apartment) }}">
+                                    <form method="POST" action="{{ route('apartments.destroy', $apartment) }}" class="delete">
                                         @csrf
                                         
                                         @method('DELETE')
                                         
-                                        <button type="submit" class="border-0 bg-transparent">
+                                        <button type="submit" class="border-0 bg-transparent" title="delete">
                                             <i class="text-danger fa-regular fa-trash-can"></i>
                                         </button>
                                     </form>
@@ -58,6 +58,7 @@
                 <a href="{{route('dashboard')}}" class="btn-bool p-2">Indietro</a>
             </div>
 
-    </div>
+        </div>
 
 @endsection
+
