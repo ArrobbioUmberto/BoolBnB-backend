@@ -13,7 +13,11 @@
             @forelse ($apartments as $apartment)
             <div class="col-sm-6 col-md-4 col-lg-3 ms-col d-flex align-items-stretch">
                 <a class="text-decoration-none" href="{{ route('apartments.show', $apartment) }}">  
+                    
                     <div class="card ap-card shadow p-3 mb-5 bg-body rounded">
+                        @if ($apartment->sponsorships()->exists())
+                        <span class="badge bg-bool">Sponsorizzato</span>       
+                        @endif
                         <img class="card-img" src="{{ asset('storage/' . $apartment->cover_image) }}" alt="immagine">
                         <div class="card-description p-3">
                             <h4 class="card-title">{{ $apartment->title }}</h4>

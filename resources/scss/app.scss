@@ -90,9 +90,16 @@
     border-color: $primary-color !important;
 }
 
-.bool-card-dark{
+.bool-card-dark,
+.bg-bool{
     border-color: $secondary-color !important;
 }
+
+.bg-bool{
+    position: absolute;
+    top: 7px;
+    left: -13px;
+}  
 
 .ap-card:hover{
     transform: scale(1.1);
