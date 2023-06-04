@@ -4,11 +4,11 @@
     <div class="container py-5 d-flex justify-content-end gap-2">
         <a href="{{ route('apartments.edit', $apartment) }}" class="btn btn-bool me-2">Modifica</a>
 
-        <form action="{{ route('apartments.destroy', $apartment) }}" method="post">
+        <form action="{{ route('apartments.destroy', $apartment) }}" method="post" class="delete">
             @csrf
             @method('DELETE')
 
-            <button type="submit" class="btn btn-delete">Elimina</button>
+            <button type="submit" class="btn btn-delete" title="delete">Elimina</button>
         </form>
 
     </div>

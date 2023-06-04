@@ -103,7 +103,7 @@ class ApartmentController extends Controller
             }
         }
 
-        return to_route('apartments.show', $apartment);
+        return to_route('apartments.show', $apartment)->with('alert-message', "Appartamento creato con successo")->with('alert-type', 'success');
     }
 
     /**
@@ -212,7 +212,7 @@ class ApartmentController extends Controller
         }
 
 
-        return to_route('apartments.show', $apartment);
+        return to_route('apartments.show', $apartment)->with('alert-message', "Appartamento modificato con successo")->with('alert-type', 'success');;
     }
 
 
@@ -242,7 +242,7 @@ class ApartmentController extends Controller
 
         $apartment->delete();
 
-        return to_route('apartments.index');
+        return to_route('apartments.index')->with('alert-message', "Appartamento eliminato con successo")->with('alert-type', 'success');
     }
 
     public function enableToggle(Apartment $apartment)

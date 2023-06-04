@@ -45,8 +45,6 @@ class SponsorshipController extends Controller
      */
     public function store(StoreSponsorshipRequest $request, Apartment $apartment, Sponsorship $sponsorship, Response $response)
     {
-        //dd($response);
-
         if ($response) {
 
             $startDate = Carbon::now()->locale('it_IT')->timezone('Europe/Rome');
@@ -66,7 +64,7 @@ class SponsorshipController extends Controller
             ]);
         }
 
-        return redirect()->route('apartments.show', compact('apartment', 'sponsorship'));
+        return redirect()->route('apartments.show', compact('apartment', 'sponsorship'))->with('alert-message', "Pagemento effettuato con successo")->with('alert-type', 'success');;
     }
 
     /**
@@ -112,13 +110,5 @@ class SponsorshipController extends Controller
     public function destroy(Sponsorship $sponsorship)
     {
         //
-    }
-    public function token(Request $request)
-    {
-
-
-        $clientToken = Braintree\ClientToken::generate();
-
-        return view('payment.sponsorship', ['token' => $clientToken]);
     }
 }

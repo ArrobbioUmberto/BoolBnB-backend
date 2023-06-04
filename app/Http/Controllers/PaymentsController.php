@@ -10,7 +10,8 @@ use Braintree\Transaction;
 
 class PaymentsController extends Controller
 {
-    public function make(Request $request, Apartment $apartment)
+
+    public function make(Request $request)
     {
         $payload = $request->input('payload', false);
         $nonce = $payload['nonce'];
@@ -21,6 +22,9 @@ class PaymentsController extends Controller
                 'submitForSettlement' => True
             ]
         ]);
+
+
+
         return response()->json($status);
     }
     public function index(Apartment $apartment, Sponsorship $sponsorship)
