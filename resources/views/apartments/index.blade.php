@@ -48,17 +48,16 @@
                                         </form>
                                     </div>
                                 </div>
+
                                 <div class="ms-auto d-flex gap-2">
                                     <span>Visibilit&agrave;</span>
                                     <form class="align-self-center" action="{{ route('apartment.toggle', $apartment->id)}}" method="POST">
-                                    @csrf
-                                    @method('PATCH')
-                                    <button type="submit" class="border-0 bg-transparent p-0 ">
-                                        <i class="fa-solid {{$apartment->visibility ? 'fa-toggle-on toggle' : 'fa-toggle-off toggle' }}"></i>
-                                    </button>
-
-                               
-                                    
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="border-0 bg-transparent p-0 ">
+                                            <i class="fa-solid {{$apartment->visibility ? 'fa-toggle-on toggle' : 'fa-toggle-off toggle' }}"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
 

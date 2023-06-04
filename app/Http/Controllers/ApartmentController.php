@@ -250,6 +250,8 @@ class ApartmentController extends Controller
         $apartment->visibility = !$apartment->visibility;
         $apartment->save();
 
-        return redirect()->back();
+        $message = ($apartment->visibility) ? 'pubblico' : 'privato';
+
+        return redirect()->back()->with('alert-message', "Ora il tuo appartamento è $message")->with('alert-type', 'success');;
     }
 }
