@@ -23,6 +23,9 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://js.braintreegateway.com/web/dropin/1.8.1/js/dropin.min.js"></script>
+    {{-- alert --}}
+    <link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
 
 
 
@@ -33,6 +36,10 @@
 
 <body>
     <div id="app">
+
+        @if (session('alert-message'))
+            <div id="popup_message" class="d-none" data-type="{{ session('alert-type') }}" data-message="{{ session('alert-message') }}"></div>
+        @endif
 
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -109,6 +116,10 @@
             @yield('content')
         </main>
     </div>
+
+    <script>
+        @vite('resources/js/alert.js')
+    </script>
 </body>
 
 </html>
