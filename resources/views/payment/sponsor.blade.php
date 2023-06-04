@@ -9,7 +9,7 @@
                 <h5 class="card-title">{{ $sponsorship->name }}</h5>
                 <p><strong>Prezzo: </strong>{{ $sponsorship->price}}&euro;</p>
                 <p class="mb-5">Metti in evidenza il tuo appartamento per <strong>{{ $sponsorship->duration}}</strong> ore</p>
-                <a href="{{ route('check', ['apartment' => $apartment, 'sponsorship' => $sponsorship]) }}"
+                <a href="{{ route('check', ['apartment' => $apartment->id, 'sponsorship' => $sponsorship->id]) }}"
                     class="btn btn-bool">Acquista</a>
             </div>
         </div>
