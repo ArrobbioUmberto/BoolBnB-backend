@@ -103,7 +103,7 @@ class ApartmentController extends Controller
             }
         }
 
-        return to_route('apartments.show', $apartment)->with('alert-message', "Appartamento creato con successo")->with('alert-type', 'success');;
+        return to_route('apartments.show', $apartment)->with('alert-message', "Appartamento creato con successo")->with('alert-type', 'success');
     }
 
     /**

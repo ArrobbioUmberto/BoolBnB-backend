@@ -32,6 +32,7 @@
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
+    @vite('resources/js/alert.js');
 </head>
 
 <body>
@@ -117,9 +118,6 @@
         </main>
     </div>
 
-    <script>
-        @vite('resources/js/alert.js')
-    </script>
 </body>
 
 </html>
