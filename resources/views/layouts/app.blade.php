@@ -32,7 +32,7 @@
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
-    @vite('resources/js/alert.js');
+    @vite('resources/js/alert.js')
 </head>
 
 <body>
