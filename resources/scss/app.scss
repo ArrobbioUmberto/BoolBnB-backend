@@ -14,7 +14,8 @@
 }
 
 .card-hd,
-.bg-bool{
+.bg-bool,
+.bg-boo{
     background-color: $secondary-color;
     color: white;
 }
@@ -95,7 +96,7 @@
     border-color: $secondary-color !important;
 }
 
-.bg-bool{
+.bg-boo{
     position: absolute;
     top: 7px;
     left: -13px;
