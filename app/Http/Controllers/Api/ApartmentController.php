@@ -15,7 +15,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $results = Apartment::with('user', 'services', 'sponsorships', 'images')->get();
+        $results = Apartment::with('user', 'services', 'sponsorships', 'images')->where('visibility', 1)->get();
         return response()->json([
             'success' => true,
             'results' => $results,
@@ -23,7 +23,7 @@ class ApartmentController extends Controller
     }
     public function search($city)
     {
-        $towns = Apartment::where('city', $city)->get();
+        $towns = Apartment::where('city', $city)->where('visibility', 1)->get();
         return response()->json([
             'success' => true,
             'results' => $towns,
