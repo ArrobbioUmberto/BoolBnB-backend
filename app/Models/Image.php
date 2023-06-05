@@ -24,7 +24,10 @@ class Image extends Model
     {
         return Attribute::make(
             get: function ($value, $attributes) {
-                return asset('storage/' . $attributes['url']);
+                if ($attributes) {
+
+                    return asset('storage/' . $attributes['url']);
+                }
             }
         );
     }
