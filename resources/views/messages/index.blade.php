@@ -7,7 +7,7 @@
     <div class="container py-5">
         @forelse($messages as $message)
             <a href="{{ route('message.show', $message) }}" class="text-decoration-none text-dark">
-                <div class="card bool-card">
+                <div class="card bool-card mb-2">
                     <div class="card-body">
                         <ul class="mb-2 list-unstyled">
                             <li><strong>Da: </strong>{{ $message->name }}</li>

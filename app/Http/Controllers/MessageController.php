@@ -19,7 +19,7 @@ class MessageController extends Controller
     {
         $user_id = Auth::id(); // qui prendiamo l'user loggato 
         $apartments_id = Apartment::where('user_id', $user_id)->get(); // qui prendiamo gli appartamenti legati a quell'user
-        $messages = Message::whereIn('apartment_id', $apartments_id->pluck('id'))->get();
+        $messages = Message::whereIn('apartment_id', $apartments_id->pluck('id'))->orderBy('created_at', 'desc')->get();
         return view('messages.index', compact('messages', 'apartments_id', 'user_id'));
     }
 
