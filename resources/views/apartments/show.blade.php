@@ -18,14 +18,13 @@
     </div>
 
     <div class="container px-5 mb-3">
-        <div class="row">
+        <div class="row g-3">
             <div class="col-lg-8 col-md-6 col-sm-12">
                 <img src="{{ asset('storage/' . $apartment->cover_image) }}" alt="immagine di copertina dell'appartamento">
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-direction-column">
-                <div class="bool-card border p-3">
-                    <p >&quot;{{ $apartment->description }}&quot;</p>
-                </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-direction-column bool-card border p-3">
+                <span >&quot;{{ $apartment->description }}&quot;</span>
+               
             </div>
         </div>
     </div>
