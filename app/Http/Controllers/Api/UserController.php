@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
         // $user_id = Auth::id();
-        $user_id = 31;
+        $user_id = 32;
 
         // $user_id = Auth::id();
         // dd(session()->get('user_id'));
