@@ -7,7 +7,7 @@
                     <li><strong>Da: </strong>{{ $message->name }}</li>
                     <li><strong>E-mail: </strong>{{$message->email}}</li>
                     <li><strong>Ricevuto il:</strong> {{ $message->created_at->format('d/m/Y') }} </li>
-                    <li><strong>Alle: </strong>{{ $message->created_at->format('H:m') }}</li>
+                    <li><strong>Alle: </strong>{{ $message->created_at->format('H:i') }}</li>
                     <li><strong>Appartamento:</strong> {{ ucfirst($message->apartment->title) }}</li>
                     <li><strong>Messaggio:</strong> <p>{{ $message->text }}</p></li>
                 </ul>
