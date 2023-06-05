@@ -34,7 +34,7 @@
         <div class="row">
             @forelse ($images as $image)
                 <div class="col-lg-2 col-md-3 mb-3">
-                    <img src="{{ asset('storage/' . $image->url) }}" alt="">
+                    <img class="extra-img" src="{{ asset('storage/' . $image->url) }}" alt="">
                 </div>
             @empty
                 <div class="col-lg-2 mb-3">
