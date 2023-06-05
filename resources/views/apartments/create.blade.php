@@ -116,17 +116,8 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="col-lg-6 col-sm-12">
-                            <label for="name" class="form-label fw-bold">Didascalia</label>
-                            <input type="text" name="caption[0]" class="form-control @error('name') is-invalid @enderror"
-                                 id="name" aria-describedby="name" placeholder="Aggiungi una didascalia">
-                            @error('name')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="col text-lg-end text-md-start">
+                        
+                        <div class="col">
                             <button type="button" class="add-btn" id="add">+</button>
                         </div>
                     </div>
@@ -188,16 +179,8 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col-lg-6 col-sm-12">
-                        <input type="text" name="caption[]" class="form-control @error('name') is-invalid @enderror"
-                             id="name" aria-describedby="name" placeholder="Aggiungi una didascalia">
-                        @error('name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="col text-lg-end text-md-start">
+                    
+                    <div class="col">
                         <button type="button" class="del-btn remove-input-field">-</button>
                     </div>
                     
