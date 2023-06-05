@@ -208,11 +208,11 @@ class ApartmentController extends Controller
             }
             Image::find($id)->delete();
 
-            return back();
+            return back()->with('alert-message', "Immagine eliminata con successo")->with('alert-type', 'success');;;
         }
 
 
-        return to_route('apartments.show', $apartment)->with('alert-message', "Appartamento modificato con successo")->with('alert-type', 'success');;
+        return to_route('apartments.show', $apartment)->with('alert-message', "Appartamento modificato con successo")->with('alert-type', 'success');
     }
 
 
