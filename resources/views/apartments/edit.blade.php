@@ -117,9 +117,9 @@
             <div class="">
                 <div class="row align-items-stretch">
                         @foreach ($images as $image)
-                        <div class="col-auto my-3">
+                        <div class="col-auto my-3 deleteImg">
                             <img src="{{ asset('storage/' .$image->url) }}" alt="{{$image->name}}" class="image-edit">
-                            <button type="submit" name="deleteImage" value="{{$image->id}}" class="text-danger delete-btn">X</button>
+                            <button type="submit" name="deleteImage" value="{{$image->id}}" class="text-danger delete-btn" title="deleteImg">X</button>
                             @if ($image->name)
                                 <p>{{$image->name}}</p>
                             @endif

@@ -1,6 +1,5 @@
 var popup = document.getElementById("popup_message");
 if (popup) {
-    // show a message in a toast
     Swal.fire({
         toast: true,
         animation: false,
@@ -19,7 +18,6 @@ const deleteBtns = document.querySelectorAll("form.delete");
 deleteBtns.forEach((formDelete) => {
     formDelete.addEventListener("submit", function (event) {
         event.preventDefault();
-        var doubleconfirm = event.target.classList.contains("double-confirm");
         Swal.fire({
             title: "Sei sicuro di voler eliminare definitivamente il tuo appartamento?",
             text: "Per favore conferma",
