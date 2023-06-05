@@ -24,7 +24,7 @@
                             <h4 class="card-title">{{ $apartment->title }}</h4>
                             <p class="card-location">{{$apartment->address . ', ' . $apartment->city}}</p>
                        
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center icon">
                                 <div class="d-flex gap-3">
                                     <div>
                                         <i class="fa-solid fa-magnifying-glass"></i>
