@@ -14,7 +14,8 @@
             <div class="col-sm-6 col-md-4 col-lg-3 ms-col d-flex align-items-stretch">
                 
                 <div class="card ap-card shadow p-3 mb-5 bg-body rounded">
-                    @if ($apartment->sponsorships()->exists())
+                  
+                    @if ($apartment->getEndDate())
                     <span class="badge bg-boo">Sponsorizzato</span>       
                     @endif
                     <a class="text-decoration-none" href="{{ route('apartments.show', $apartment) }}">  
