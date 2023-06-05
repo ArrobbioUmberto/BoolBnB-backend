@@ -69,4 +69,9 @@ class Apartment extends Model
 
 
     protected $appends = ['cover_path'];
+
+    public function getEndDate()
+    {
+        return $this->sponsorships()->wherePivot('end_date', '>=', now())->exists();
+    }
 }
