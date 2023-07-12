@@ -81,12 +81,12 @@
                             <span class="input-group-text">€</span>
                             <input class="form-control  @error('price') is-invalid @enderror" type="text" id="price"
                             name="price" value="{{ old('price') }}">
-                        </div>
                             @error('price')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
+                        </div>
                     </div>
 
                 </div>

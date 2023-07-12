@@ -25,4 +25,19 @@ class UserController extends Controller
             'results' => $user,
         ]);
     }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Autenticazione riuscita
+            return redirect()->intended('/');
+        }
+
+        // Autenticazione fallita
+        return back()->withErrors([
+            'email' => 'Credenziali non valide.',
+        ]);
+    }
 }
